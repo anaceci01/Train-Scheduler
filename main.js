@@ -22,6 +22,21 @@ $(document).ready(function() {
         destination = $('#destination-input').val().trim();
         frequency = $('#frequency-input').val().trim();
         firstTimeConverted = moment(firstTrainTime, "hh:mm").substract(1, "years");
-        console.log(name)
-    })
+
+        //push code
+        keyHolder = dataRef.push({
+            name: name,
+            destination: destination,
+            fistTrainTime: firstTrainTime,
+            frequency: frequeny,
+            nextTrainFormatted: nextTrainFormatted,
+            minutesTillTrain: minutesTillTrain
+        });
+        $('#name-input').val('');
+        $('#destination-input').val('');
+        $('#first-train-time-input').val('');
+        $('#frequency-input').val('');
+
+        return false;
+    });
 })
