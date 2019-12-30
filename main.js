@@ -1,0 +1,15 @@
+var url = "";
+var dataRef = new Firebase(url);
+var name = '';
+var destination = '';
+var frequeny = '';
+var nextTrain = '';
+var nextTrainFormatted = '';
+var minutesAway = '';
+var firstTimeConverted = '';
+var currentTime = '';
+var diffTime = '';
+var tRemainder = '';
+var minutesTillTrain = '';
+var keyHolder = '';
+var getKey = '';
