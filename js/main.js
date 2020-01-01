@@ -46,36 +46,15 @@
           console.log(childSnapshot.val());
       }
 
-
-
-
-
-
-
-
-  //   var url = "https://train-tracker-534f3.firebaseio.com";
-  //   var name = '';
-  //   var destination = '';
-  //   var fistTrainTime = '';
-  //   var frequeny = '';
-  //   var nextTrain = '';
-  //   var nextTrainFormatted = '';
-  //   var minutesAway = '';
-  //   var firstTimeConverted = '';
-  //   var currentTime = '';
-  //   var diffTime = '';
-  //   var tRemainder = '';
-  //   var minutesTillTrain = '';
-  //   var keyHolder = '';
-  //   var getKey = '';
-
-
-  //   $(document).ready(function() {
-  //       $("#add-train").on("clik", function() {
-  //           name = $('#name-input').val().trim();
-  //           destination = $('#destination-input').val().trim();
-  //           frequency = $('#frequency-input').val().trim();
-  //           firstTimeConverted = moment(firstTrainTime, "hh:mm").substract(1, "years");
+  var trainName = childSnapshot.val().name;
+  var TrainDestination = childSnapshot.val().destination;
+  var TrainFrequency = childSnapshot.val().frequency;
+  var TrainFirstTrain = childSnapshot.val().firstTrain;
+  var timeArray = TrainFirstTrain.split(":");
+  var trainTime = moment().hours(timeArray[0]).minutes(timeArray[1]);
+  var maxMoment = moment.max(moment(), trainTime);
+  var trainMinutes;
+  var trainArrival;
 
   //push code
   keyHolder = dataRef.push({
