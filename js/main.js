@@ -1,51 +1,64 @@
 // Your web app's Firebase configuration
 var config = {
-    apiKey: "AIzaSyB9hzmyXPuoRS1O5IVKvp68dCnF7ExMFww",
-    authDomain: "traintime-3964f.firebaseapp.com",
-    databaseURL: "https://traintime-3964f.firebaseio.com",
-    projectId: "traintime-3964f",
-    storageBucket: "traintime-3964f.appspot.com",
-    messagingSenderId: "366600363795",
-    appId: "1:366600363795:web:fb08be6bee13e6b78484e6"
+    apiKey: "AIzaSyCK3HFa4iLxTy_ZHcGYQmV2j6ohMfbQpCU",
+    authDomain: "thetraintime.firebaseapp.com",
+    databaseURL: "https://thetraintime.firebaseio.com",
+    projectId: "thetraintime",
+    storageBucket: "thetraintime.appspot.com",
+    messagingSenderId: "851659797464",
+    appId: "1:851659797464:web:483e5123f6ada90455b8ad"
 };
-
 // Initialize Firebase
-export default !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
-import firebase from '../firebase';
-console.log(firebase.name);
-console.log(firebase.database());
+firebase.initializeApp(config);
+
+var trainData = firebase.database().ref('thetraintime');
+
 
 //on click function to add trains
-var trainData = firebase.database();
-$("#add-train").on("click", function(event) {
+$("#add-train-btn").on("click", function(event) {
     event.noDefault();
 
     //user input
-    var name = $('#train-name-input').val().trim();
-    var destination = $('#destination-input').val().trim();
-    var frequency = $('#frequency-input').val().trim();
-    var firstTrain = moment(firstTrainTime, "hh:mm").substract(1, "years");
+    var trainName = $('.train-name-input').val().trim();
+    var destination = $('.destination-input').val().trim();
+    var frequency = $('.frequency-input').val().trim();
+    var firstTrain = $('.first-train-input').val().trim();
+
 
     var newTrain = {
-        name: name,
+        name: trainName,
         destination: destination,
         frequency: frequency,
         firstTrain: firstTrain
     };
 
+
     trainData.ref().push(newTrain);
+    newTrain.set({
+        trainName: $('.train-name-input').val(),
+        destination: $('.destination-input').val(),
+        frequency: $('.frequency-input').val(),
+        firstTrain: $('.first-train-input').val()
+    });
 
-    console.log(newTrain.name);
-    console.log(newTrain.destination);
-    console.log(newTrain.frequency);
-    console.log(newTrain.firstTrain);
+    $('.success-message').show();
 
-    //form clears text
-    $("#train-name-input").val("");
-    $("#destination-input").val("");
-    $("#first-train-input").val("");
-    $("#frequency-input").val("");
+    $('#add-train-btn')[0].reset();
 });
+
+trainData.ref().push(newTrain);
+
+console.log(newTrain.trainName);
+console.log(newTrain.destination);
+console.log(newTrain.frequency);
+console.log(newTrain.firstTrain);
+
+//     //form clears text
+$("#train-name-input").val("");
+$("#destination-input").val("");
+$("#first-train-input").val("");
+$("#frequency-input").val("");
+
 
 //create a new row when user adds train
 trainData.ref().on("child_added"),
@@ -86,4 +99,4 @@ trainData.ref().on("child_added"),
                 $("<td>").text(trainMinutes)
             )
         );
-    });
+    };
